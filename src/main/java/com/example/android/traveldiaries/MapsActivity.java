@@ -130,6 +130,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Location placeLocation = new Location(LocationManager.GPS_PROVIDER);
                 placeLocation.setLatitude(MainActivity.locations.get(intent.getIntExtra("placeholder", 0)).latitude);
                 placeLocation.setLongitude(MainActivity.locations.get(intent.getIntExtra("placeholder", 0)).longitude);
+                Toast.makeText(this, placeLocation.getLatitude() + "  " + placeLocation.getLongitude(), Toast.LENGTH_SHORT).show();
                 centerMapOnLocation(placeLocation, intent.getStringExtra("place"));
             }
         }
@@ -177,6 +178,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             longitudes.add(""+loc.longitude);
 
         }
+        printArray(latitudes);
+        printArray(longitudes);
         try {
             sharedPreferences.edit().putString("places", ObjectSerializer.serialize(MainActivity.myDataset)).apply();
             sharedPreferences.edit().putString("latitudes", ObjectSerializer.serialize(latitudes)).apply();
@@ -191,5 +194,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Toast.makeText(this, "io exception", Toast.LENGTH_SHORT).show();
         }
         Toast.makeText(this, "Location Saved", Toast.LENGTH_SHORT).show();
+    }
+
+    private void printArray(ArrayList<String> arr) {
+        for(int i =0;i<arr.size();i++){
+            Log.d("arr", "printArray: " + arr.get(i));
+        }
     }
 }

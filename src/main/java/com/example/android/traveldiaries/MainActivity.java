@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         if(myDataset.size()>0 && latitudes.size()==myDataset.size() && longitudes.size()==myDataset.size()){
             locations.clear();
             for(int i=0;i<latitudes.size();i++){
-                locations.add(new LatLng(Double.parseDouble(latitudes.get(i)),Double.parseDouble(latitudes.get(i))));
+                locations.add(new LatLng(Double.parseDouble(latitudes.get(i)),Double.parseDouble(longitudes.get(i))));
             }
         }
         else {
